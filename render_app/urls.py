@@ -2,10 +2,8 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    # ex: /polls/
-    path('', views.home, name='home'),
+    path('', views.ProjectsListView.as_view(), name='home'),
+    path('project/<int:pk>', views.ProjectsDetailView.as_view(), name="project_detail"),
     path('accounts/signup/', views.signup, name='signup'),
-    path('accounts/profile/', views.home, name='profile'),
-    # ex: /polls/5/
-    # path('<int:question_id>/', views.detail, name='detail'),
+    path('accounts/profile/', views.home, name='profile')
 ]

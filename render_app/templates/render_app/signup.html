@@ -1,11 +1,14 @@
-<h1>Render Project</h1>
-<button><a href="/accounts/login">Log in</a></button>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+  <p>Already member? <a href="/accounts/login">Log in</a></p>
   <h2>Sign up</h2>
-  <form method="post">
+  <form method="post" class="form">
     {% csrf_token %}
-    {% for field in form %}
+    {{ form|crispy }}
+    <!-- {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
         {{ field }}
@@ -16,7 +19,7 @@
           <p style="color: red">{{ error }}</p>
         {% endfor %}
       </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
+    {% endfor %} -->
+    <button type="submit" class="btn btn-success">Sign up</button>
   </form>
 {% endblock %}

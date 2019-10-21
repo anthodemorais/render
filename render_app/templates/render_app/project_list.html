@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if projects != None %}
+        <h4>Your projects</h4>
+        <div class="row">
+            {% for project in projects %}
+                    <div class="col-sm-6">
+                        <div class="card mt-4 mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.name }}</h5>
+                                {% if project.done_at %}
+                                    <p class="card-text">Done at: {{ project.done_at }}</p>
+                                {% else %}
+                                    <p class="card-text">Deadline: {{ project.deadline }}</p>
+                                {% endif %}
+                                <a href="{% url 'project_detail' project.id %}">See details</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-3 ml-0">
+            <div class="col-sm-12">
+                <a href="{% url 'account_logout' %}" class="btn btn-secondary">Log out</a>
+            </div>
+        </div>
+    {% elif authenticated == False %}
+        <div class="row">
+            <h4>Please authenticate</h4>
+            <a href="/accounts/signup/">Sign up</a>
+            <a href="/accounts/login/">Log in</a>
+        </div>
+    {% else %}
+    <div class="row">
+        <h4>You have no projects...</h4>
+        <hr class="mt-0 mb-4">
+        <a href="{% url 'account_logout' %}" class="btn btn-secondary">Log out</a>
+    </div>
+    {% endif %}
+{% endblock %}

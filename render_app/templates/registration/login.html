@@ -1,11 +1,13 @@
-<h1>Render Project</h1>
-<button><a href="/accounts/signup">Sign up</a></button>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
 
 {% block content %}
   <h2>Login</h2>
+  <p>Not a member? <a href="/accounts/signup">Sign up</a></p>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Log in</button>
   </form>
 {% endblock %}

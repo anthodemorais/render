@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
+from django.views.generic import ListView, DetailView
+
 from .models import Project
 
 def signup(request):
@@ -31,3 +33,12 @@ def home(request):
             return render(request, 'render_app/home.html', {"projects": projects, 'authenticated':True})            
     else:
         return render(request, 'render_app/home.html', {"projects": None, 'authenticated':False})
+
+class ProjectsListView(ListView):
+    model = Project
+    context_object_name = "projects"
+
+class ProjectsDetailView(DetailView):
+    model = Project
+    queryset = Project.objects.all()
+    context_object_name = "project"

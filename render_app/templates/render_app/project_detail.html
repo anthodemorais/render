@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card text-center">
+    <div class="card-header">
+        <h3>{{ project.name }}</h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ project.course }}</h5>
+        <p class="card-text">{{ project.description }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        {{ project.deadline }}
+    </div>
+</div>
+
+{% endblock %}
