@@ -1,0 +1,21 @@
+{% block content %}
+    <h2>Home</h2>
+    {% if projects != None %}
+        <h4>Your projects</h4>
+        <ul>
+            {% for project in projects %}
+                <li>
+                    {{ project.name }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif authenticated == False %}
+        <h4>Please authenticate</h4>
+        <a href="/accounts/signup/">Sign up</a>
+        <a href="/accounts/login/">Log in</a>
+    {% else %}
+    <h4>You have no projects</h4>
+    <button><a href="/accounts/logout/">Log out</a></button>
+    {% endif %}
+
+{% endblock %}
